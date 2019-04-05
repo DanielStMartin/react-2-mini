@@ -13,30 +13,33 @@ class App extends Component {
     super();
     this.state = {
       fontColor: "black",
-      fontSize: "12",
-      fontFamily: "Monospace",
+      fontSize: 12,
+      fontFamily: "monospace",
       allowEdit: "true"
     };
     this.updateColor = this.updateColor.bind(this);
+    this.updateEditStatus = this.updateEditStatus.bind(this);
     this.updateSize = this.updateSize.bind(this);
     this.updateFamily = this.updateFamily.bind(this);
-    this.updateEditStatus = this.updateEditStatus.bind(this);
   }
-
   // updateColor
+
+  // our function will take in a value and call setState to update state in App.js with the values being passed in
   updateColor(val) {
-    // setState will merge the object that is passed in with the currentState,
-    //  it will then call a rerender when state has finished updating
+    // setState will merge the object that is passed in with the currentState, it will then call a rerender when state has finished updating
     this.setState({ fontColor: val });
   }
   // updateSize
   updateSize(val) {
-    //
-    this.setState({ fontSize: val });
+    this.setState({
+      fontSize: val
+    });
   }
   // updateFamily
   updateFamily(val) {
-    this.setState({ fontFamily: val });
+    this.setState({
+      fontFamily: val
+    });
   }
   // updateEditStatus
   updateEditStatus(val) {
@@ -47,18 +50,19 @@ class App extends Component {
     return (
       <div>
         <div className="headerBar">
+          {/* Render EditToggle */}
           <EditToggle update={this.updateEditStatus} />
-
+          {/* Render ColorChanger */}
           <ColorChanger
             update={this.updateColor}
             allowEdit={this.state.allowEdit}
           />
-
+          {/* Render SizeChanger */}
           <SizeChanger
             update={this.updateSize}
             allowEdit={this.state.allowEdit}
           />
-
+          {/* Render FamilyChanger */}
           <FamilyChanger
             update={this.updateFamily}
             allowEdit={this.state.allowEdit}
@@ -70,6 +74,7 @@ class App extends Component {
             fontColor={this.state.fontColor}
             fontFamily={this.state.fontFamily}
           />
+          {/* Render TextContainer */}
         </div>
       </div>
     );
